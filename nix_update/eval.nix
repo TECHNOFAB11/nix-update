@@ -71,10 +71,7 @@ let
         outPath = flake.outPath;
         outPathLen = stringLength outPath;
       in
-      { file, ... }@pos:
-      if substring 0 outPathLen file != outPath then
-        throw "${file} is not in ${outPath}"
-      else
+      { file, ... }@pos: 
         pos // { file = importPath + substring outPathLen (stringLength file - outPathLen) file; }
     else
       x: x;
